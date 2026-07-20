@@ -15,8 +15,8 @@ jobs:
       - name: Invite author to team and comment with multilingual reminder
         uses: actions/github-script@v7
         env:
-          ORG: xxx
-          TEAM_SLUG: xxx
+          ORG: LiLaoShiTeam
+          TEAM_SLUG: lilaoshiteam
           INVITE_URL: https://github.com/orgs/xxx/invitation
         with:
           github-token: ${{ secrets.ORG_MEMBERS_TOKEN }}
