@@ -17,7 +17,7 @@ jobs:
         env:
           ORG: LiLaoShiTeam
           TEAM_SLUG: lilaoshiteam
-          INVITE_URL: https://github.com/orgs/xxx/invitation
+          INVITE_URL: https://github.com/orgs/lilaoshiteam/invitation
         with:
           github-token: ${{ secrets.ORG_MEMBERS_TOKEN }}
           script: |
