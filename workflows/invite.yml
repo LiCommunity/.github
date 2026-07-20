@@ -15,8 +15,8 @@ jobs:
       - name: Add issue author to team
         uses: actions/github-script@v7
         env:
-          ORG: your-org
-          TEAM_SLUG: your-team-slug
+          ORG: LiLaoShiTeam
+          TEAM_SLUG: LiLaoShiTeam
         with:
           github-token: ${{ secrets.ORG_MEMBERS_TOKEN }}
           script: |
