@@ -1,0 +1,71 @@
+name: Invite issue author to team
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: read
+
+jobs:
+  invite:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add issue author to team
+        uses: actions/github-script@v7
+        env:
+          ORG: your-org
+          TEAM_SLUG: your-team-slug
+        with:
+          github-token: ${{ secrets.ORG_MEMBERS_TOKEN }}
+          script: |
+            const org = process.env.ORG;
+            const teamSlug = process.env.TEAM_SLUG;
+            const username = context.payload.issue?.user?.login;
+
+            if (!username) {
+              core.setFailed('Cannot find issue author login.');
+              return;
+            }
+
+            // 可选：跳过 bot
+            if (username.endsWith('[bot]')) {
+              core.info(`Skip bot user: ${username}`);
+              return;
+            }
+
+            // 先查是否已经在队里，避免重复动作
+            try {
+              const existing = await github.request(
+                'GET /orgs/{org}/teams/{team_slug}/memberships/{username}',
+                { org, team_slug: teamSlug, username }
+              );
+
+              core.info(`Membership state=${existing.data.state}, role=${existing.data.role}`);
+
+              if (existing.data.state === 'active') {
+                core.info(`${username} is already an active team member.`);
+                return;
+              }
+            } catch (error) {
+              if (error.status !== 404) throw error;
+            }
+
+            // 不在队里就添加；如果对方还不是组织成员，owner 调用时会发出邀请
+            const result = await github.request(
+              'PUT /orgs/{org}/teams/{team_slug}/memberships/{username}',
+              {
+                org,
+                team_slug: teamSlug,
+                username,
+                role: 'member'
+              }
+            );
+
+            core.info(`Done. state=${result.data.state}, role=${result.data.role}`);
+
+
+
+
+            
