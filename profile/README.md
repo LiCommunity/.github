@@ -1,13 +1,13 @@
 
 
 # JOIN US
-[Click to join us](https://lilaoshiteam.github.io/join)
+[Click to join us](https://licommunity.github.io/join)
 
-[点击立刻加入我们](https://lilaoshiteam.github.io/join)
+[点击立刻加入我们](https://licommunity.github.io/join)
 
-You can also [submit any random issues here](https://github.com/LiLaoShiTeam/.github/issues/new) to join us.
+You can also [submit any random issues here](https://github.com/LiCommunity/.github/issues/new) to join us.
 
-您也可以在此[提交任何随机issues](https://github.com/LiLaoShiTeam/.github/issues/new)来加入我们
+您也可以在此[提交任何随机issues](https://github.com/LiCommunity/.github/issues/new)来加入我们
 
 
 
